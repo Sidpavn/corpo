@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1033711817800",
+    "project_id": "corpo-2f513",
+    "storage_bucket": "corpo-2f513.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033711817800:android:aa97f30b789ca0e1eff47d",
+        "android_client_info": {
+          "package_name": "com.nichemarabu.corpo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1033711817800-hhihfmcr110usfsmjin8t6pu2rv6qk82.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nichemarabu.corpo",
+            "certificate_hash": "ee963b834b484b2b796d5bf7f0ccf2a30b8dfebd"
+          }
+        },
+        {
+          "client_id": "1033711817800-jqv9ori63fe0v09mlp3kb5nkr2k4er7i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nichemarabu.corpo",
+            "certificate_hash": "acf6e830d2e45b7e3f1043f12fd16ae24df0053c"
+          }
+        },
+        {
+          "client_id": "1033711817800-gofdt23lntss57mdsl9bf4p7ca60sn0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJIHszZ4BzHFLo6BLKcIBTxLKR0hXJNFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1033711817800-gofdt23lntss57mdsl9bf4p7ca60sn0g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
