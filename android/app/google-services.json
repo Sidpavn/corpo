@@ -45,6 +45,13 @@
             {
               "client_id": "1033711817800-gofdt23lntss57mdsl9bf4p7ca60sn0g.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1033711817800-m34i608iodj5egdflen3dkahpc380jo2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nichemarabu.corpo"
+              }
             }
           ]
         }
