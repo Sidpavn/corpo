@@ -1,8 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../screens/game/game_screen.dart';
-import '../screens/homepage/homepage.dart';
+import '../screens/home/homepage.dart';
 
 navigationChooser(String name, BuildContext context){
   switch(name){

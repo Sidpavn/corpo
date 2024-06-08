@@ -90,7 +90,7 @@ Widget tabButton(String title, int index, int tabIndex){
         right: BorderSide(color: ColorTheme.black,width: 1.5,),
       ),
     ),
-    child: button(
+    child: buttonWidget(
         padding: const EdgeInsets.all(10),
         color: isCurrent ? ColorTheme.black : ColorTheme.white,
         child: Center(
@@ -114,7 +114,7 @@ Widget tabButton(String title, int index, int tabIndex){
   );
 }
 
-Widget button({required EdgeInsetsGeometry padding, required Color color, required Widget child}){
+Widget buttonWidget({required EdgeInsetsGeometry padding, required Color color, required Widget child}){
   return AnimatedContainer(
     width: double.infinity,
     padding: padding,

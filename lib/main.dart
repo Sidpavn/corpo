@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:corpo/common/statics.dart';
 import 'package:corpo/firebase_options.dart';
 import 'package:corpo/providers/network_connectivity.dart';
@@ -6,8 +8,9 @@ import 'package:connectivity/connectivity.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:localstorage/localstorage.dart';
+import 'package:localstorage/localstorage.dart' as st;
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:responsive_framework/utils/scroll_behavior.dart';
@@ -22,6 +25,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
+
+  if (Platform.isAndroid) {
+    await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
+  }
+
   runApp(
     MultiProvider(
       providers: [
@@ -70,7 +78,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final storage = LocalStorage('corpo');
+    final storage = st.LocalStorage('corpo');
     return FutureBuilder(
       future: storage.ready,
       builder: (BuildContext context, AsyncSnapshot snapshot) {

@@ -12,11 +12,11 @@ class ColorTheme {
   static Color darkRed      = const Color(0xffD1351F);
   static Color amber        = const Color(0xffF1AE87);
   static Color brown        = const Color(0xffC3B8A1);
-  static Color yellow       = const Color(0xffF1DE87);
+  static Color yellow       = const Color(0xfff2e152);
   static Color sky          = const Color(0xffE4EBEC);
   static Color blue         = const Color(0xff81BAEE);
   static Color mutedAmber   = const Color(0xffF19753);
-  static Color neonGreen    = const Color(0xff46E181);
+  static Color neonGreen    = const Color(0xff6ee833);
   static Color green        = const Color(0xff8DEE81);
   static Color camo         = const Color(0xff578053);
   static Color purple       = const Color(0xff9351E8);
@@ -37,20 +37,6 @@ class ColorTheme {
 Color getColor(String rarity){
   Color color = const Color(0xff929797);
   switch(rarity){
-    // Accent
-    // case "white":         {  color = ColorTheme.white;        break; }
-    // case "creme":         {  color = ColorTheme.creme;        break; }
-    // case "black":         {  color = ColorTheme.black;        break; }
-    // case "grey":          {  color = ColorTheme.grey;         break; }
-    // case "brown":         {  color = ColorTheme.brown;        break; }
-    // case "red":           {  color = ColorTheme.red;          break; }
-    // case "dark_red":      {  color = ColorTheme.darkRed;      break; }
-    // case "amber":         {  color = ColorTheme.amber;        break; }
-    // case "yellow":        {  color = ColorTheme.yellow;       break; }
-    // case "sky":           {  color = ColorTheme.sky;          break; }
-    // case "blue":          {  color = ColorTheme.blue;         break; }
-    // case "muted_amber":   {  color = ColorTheme.mutedAmber;   break; }
-    // case "neon_green":    {  color = ColorTheme.neonGreen;    break; }
     // Rarity
     case "common":        {  color = ColorTheme.common;       break; }
     case "uncommon":      {  color = ColorTheme.uncommon;     break; }

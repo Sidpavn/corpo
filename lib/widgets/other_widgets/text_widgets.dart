@@ -55,7 +55,6 @@ String formatFloatNumber(double number) {
   return formattedNumber;
 }
 
-
 Widget bulletPoint({required Color color, required String title, required String subtitle}){
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +74,7 @@ Widget bulletPoint({required Color color, required String title, required String
               TextSpan(
                 text: title,
                 style: GoogleFonts.epilogue(
-                  fontSize: FontSize.info,
+                  fontSize: FontSize.subtitle,
                   fontWeight: FontWeight.w700,
                   color: color,
                   height: 1.1
@@ -84,7 +83,7 @@ Widget bulletPoint({required Color color, required String title, required String
               TextSpan(
                   text: subtitle,
                   style: GoogleFonts.epilogue(
-                      fontSize: FontSize.info,
+                      fontSize: FontSize.subtitle,
                       fontWeight: FontWeight.w500,
                       color: color,
                       height: 1.1

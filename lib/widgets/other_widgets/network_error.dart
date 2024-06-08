@@ -1,6 +1,5 @@
 import 'package:corpo/common/statics.dart';
 import 'package:corpo/models/themes/theme.dart';
-import 'package:corpo/widgets/login/login_widgets.dart';
 import 'package:corpo/widgets/other_widgets/misc_widgets.dart';
 import 'package:corpo/widgets/other_widgets/text_widgets.dart';
 import 'package:flutter/material.dart';
@@ -25,12 +24,6 @@ Widget networkError(){
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget> [
-                        Column(
-                          children: [
-                            nicheMarabu(),
-                            projectKaldor(),
-                          ],
-                        ),
                         loadingWidget(),
                         Column(
                           children: [
