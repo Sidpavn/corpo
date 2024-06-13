@@ -1,21 +1,12 @@
-import 'dart:async';
-import 'dart:math';
-import 'dart:ui';
 
-import 'package:corpo/widgets/other_widgets/misc_widgets.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:spring/spring.dart';
 import '../../common/statics.dart';
 import '../../models/themes/theme.dart';
 import '../../services/splash/splash_service.dart';
-import '../../widgets/other_widgets/custom_painter_widgets/animated_line.dart';
-import '../../widgets/other_widgets/custom_painter_widgets/animated_point_to_point.dart';
-import '../../widgets/other_widgets/splash_widgets.dart';
-import '../../widgets/other_widgets/text_widgets.dart';
 
 class SplashView extends StatefulWidget {
 
@@ -65,7 +56,7 @@ class _SplashViewState extends State<SplashView> {
                             width: double.infinity,
                             height: height,
                             decoration: BoxDecoration(
-                              color: ColorTheme.black,
+                              color: ColorTheme.lightGrey,
                             ),
                             duration: const Duration(milliseconds: 200),
                             child: Center(
@@ -77,12 +68,21 @@ class _SplashViewState extends State<SplashView> {
                                         textAlign: TextAlign.left,
                                         text: TextSpan(children: [
                                           TextSpan(
+                                              text: " a game by\n\n",
+                                              style: GoogleFonts.epilogue(
+                                                fontSize: FontSize.info,
+                                                fontWeight: FontWeight.w500,
+                                                color: ColorTheme.black,
+                                                height: 0.1
+                                              )
+                                          ),
+                                          TextSpan(
                                               text: "NICHE\nMARABU",
-                                              style: GoogleFonts.spaceMono(
-                                                  fontSize: FontSize.headline0,
-                                                  fontWeight: FontWeight.w700,
-                                                  color: ColorTheme.yellow,
-                                                  height: 0.9
+                                              style: GoogleFonts.epilogue(
+                                                fontSize: FontSize.headline0,
+                                                fontWeight: FontWeight.w900,
+                                                color: ColorTheme.black,
+                                                height: 0.9
                                               )
                                           ),
                                         ])

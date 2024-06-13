@@ -5,10 +5,10 @@ import 'package:corpo/firebase_options.dart';
 import 'package:corpo/providers/network_connectivity.dart';
 import 'package:corpo/screens/authentication/splash.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:corpo/services/storage/storage_functions.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:localstorage/localstorage.dart' as st;
 import 'package:provider/provider.dart';
@@ -25,10 +25,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
-
-  if (Platform.isAndroid) {
-    await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
-  }
 
   runApp(
     MultiProvider(
@@ -78,11 +74,12 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final storage = st.LocalStorage('corpo');
+    final storage = st.LocalStorage('hitman');
     return FutureBuilder(
       future: storage.ready,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
+          // clearLocalStorage();
           return MaterialApp(
             builder: (context, widget) => ResponsiveWrapper.builder(
                 ClampingScrollWrapper.builder(context, widget!),

@@ -5,7 +5,7 @@ import '../../screens/home/homepage.dart';
 
 class SplashServices {
   void checkAuthentication(BuildContext context) async {
-    await Future.delayed(const Duration(milliseconds: 2000));
+    await Future.delayed(const Duration(milliseconds: 4000));
 
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(

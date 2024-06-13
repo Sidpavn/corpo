@@ -75,7 +75,9 @@ dependencies:
   marquee: ^2.2.1
   flutter_blue_plus: 1.31.15
   cupertino_icons: ^1.0.2
-  flutter_inappwebview: ^5.4.0
+  flip_card: ^0.7.0
+  swipe_cards: ^1.0.0
+  dotted_border: ^2.1.0
 
 dependency_overrides:
   firebase_core_platform_interface: 4.5.1

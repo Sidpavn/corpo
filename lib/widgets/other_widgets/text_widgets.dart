@@ -120,7 +120,7 @@ Widget mini(bool isBold, {required String title, required TextAlign textAlign, r
       text: TextSpan(children: [
         TextSpan(
             text: title.titleCase(),
-            style: GoogleFonts.spaceMono(
+            style: GoogleFonts.epilogue(
               fontSize: FontSize.mini,
               fontWeight: isBold ? FontWeight.w700 : FontWeight.w600,
               color: color,
@@ -232,4 +232,32 @@ Widget headline0(bool isBold, {required String title, required TextAlign textAli
         ),
       ])
   );
+}
+
+Widget headline(bool isBold, {required String title, required TextAlign textAlign, required Color color}){
+  return RichText(
+      textAlign: textAlign,
+      text: TextSpan(children: [
+        TextSpan(
+            text: title.titleCase(),
+            style: GoogleFonts.epilogue(
+              fontSize: FontSize.headline1,
+              fontWeight: isBold ? FontWeight.w900 : FontWeight.w500,
+              color: color,
+              height: 0.9
+            )
+        ),
+      ])
+  );
+}
+
+String formatList(List<String> items) {
+  if (items.isEmpty) {
+    return '';
+  } else if (items.length == 1) {
+    return items.first;
+  } else {
+    String joinedItems = items.sublist(0, items.length - 1).join(',\n');
+    return '$joinedItems &\n${items.last}';
+  }
 }

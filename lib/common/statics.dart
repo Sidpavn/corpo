@@ -8,6 +8,7 @@ class FontSize{
   static const headline3      = 20.0;
   static const headline2      = 25.0;
   static const headline1      = 30.0;
+  static const headline       = 45.0;
   static const headline0      = 50.0;
 
 }

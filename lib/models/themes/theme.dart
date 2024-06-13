@@ -8,7 +8,7 @@ class ColorTheme {
   static Color black        = const Color(0xff060606);
   static Color grey         = const Color(0xff3D3B3B);
   static Color lightGrey    = const Color(0xffC2C2C2);
-  static Color red          = const Color(0xffE14630);
+  static Color red          = const Color(0xffF35454);
   static Color darkRed      = const Color(0xffD1351F);
   static Color amber        = const Color(0xffF1AE87);
   static Color brown        = const Color(0xffC3B8A1);

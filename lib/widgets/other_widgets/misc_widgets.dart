@@ -8,6 +8,25 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../common/statics.dart';
 import '../../models/themes/theme.dart';
 
+Widget chipList({required List<dynamic> items}){
+  return Wrap(
+    spacing: 5,
+    runSpacing: 0,
+    children: items.map((item) {
+      return Chip(
+          backgroundColor: ColorTheme.black.withOpacity(0.2),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+          labelPadding: const EdgeInsets.fromLTRB(10,2,10,2),
+          label: info(
+              false,
+              title: item,
+              textAlign: TextAlign.left,
+              color: ColorTheme.black
+          )
+      );
+    }).toList(),
+  );
+}
 
 Widget assetImageContainer({required double? height, required String asset}){
   return Container(
@@ -32,6 +51,23 @@ Widget assetImageContainer({required double? height, required String asset}){
       },
 
     ),
+  );
+}
+
+Widget box(bool isPad, {required int flex, required Color? color, required List<int> border, required Widget widget}){
+  return Container(
+      width: double.infinity,
+      padding: isPad ? const EdgeInsets.fromLTRB(20,10,20,10) : const EdgeInsets.fromLTRB(0,0,0,0),
+      decoration: BoxDecoration(
+        color: color ?? Colors.transparent,
+        border: Border(
+          left: border[0] == 1 ? BorderSide(color: ColorTheme.black,width: 1.5,) : BorderSide.none,
+          top: border[1] == 1 ? BorderSide(color: ColorTheme.black,width: 1.5,) : BorderSide.none,
+          right: border[2] == 1 ? BorderSide(color: ColorTheme.black,width: 1.5,) : BorderSide.none,
+          bottom: border[3] == 1 ? BorderSide(color: ColorTheme.black,width: 1.5,) : BorderSide.none,
+        ),
+      ),
+      child: widget
   );
 }
 
@@ -153,47 +189,6 @@ Widget centerRow(bool isCenter, {required Widget child}){
       child,
       const SizedBox(),
     ],
-  );
-}
-
-Widget rarityBar(typeOfRarity rarityType){
-  String rarity = rarityType.name;
-  double count = 0;
-
-  switch(rarityType){
-    case typeOfRarity.common:     {count = 1; break;}
-    case typeOfRarity.uncommon:   {count = 2; break;}
-    case typeOfRarity.rare:       {count = 3; break;}
-    case typeOfRarity.epic:       {count = 4; break;}
-    case typeOfRarity.legendary:  {count = 5; break;}
-    case typeOfRarity.mystic:     {count = 6; break;}
-    case typeOfRarity.exotic:     {count = 7; break;}
-    case typeOfRarity.legacy:     {count = 8; break;}
-  }
-
-  return RatingBar.builder(
-    initialRating: count,
-    minRating: 0,
-    direction: Axis.horizontal,
-    updateOnDrag: false,
-    tapOnlyMode: false,
-    allowHalfRating: false,
-    itemCount: 8,
-    itemSize: 15,
-    itemPadding: const EdgeInsets.symmetric(horizontal: 1),
-    itemBuilder: (context, _) => Container(
-      width: 15,  height: 15,
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 1.5,
-          color: ColorTheme.black,
-        ),
-        borderRadius: const BorderRadius.all(Radius.circular(500)),
-        color: getColor(rarity),
-      ),
-    ),
-    ignoreGestures: true,
-    onRatingUpdate: (double value) {  },
   );
 }
 
