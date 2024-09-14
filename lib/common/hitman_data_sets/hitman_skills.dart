@@ -12,12 +12,12 @@ List<Map<String, dynamic>> hitmanSkills = [
   },
   {
     "name" : "Hand-to-Hand Combat",
-    "attributes" : [{"CMB": 2, "STR": 1, "END": 1}],
+    "attributes" : [{"CMB": 2, "STR": 1}],
     "archetype" : "The Brawler",
   },
   {
     "name" : "Tactical Driving",
-    "attributes" : [{"AGI": 1, "PER": 1}],
+    "attributes" : [{"PER": 1}],
     "archetype" : "The Wheelman",
   },
   {
@@ -37,12 +37,12 @@ List<Map<String, dynamic>> hitmanSkills = [
   },
   {
     "name" : "Evasion Techniques",
-    "attributes" : [{"AGI": 1}],
+    "attributes" : [{"LKY": 1}],
     "archetype" : "The Escape Artist",
   },
   {
     "name" : "Lockpicking",
-    "attributes" : [{"STL": 1}],
+    "attributes" : [{"STL": 1, "LKY": 1}],
     "archetype" : "The Locksmith",
   },
   {
@@ -57,12 +57,12 @@ List<Map<String, dynamic>> hitmanSkills = [
   },
   {
     "name" : "Interrogation Techniques",
-    "attributes" : [{"INT": 1, "END": 1}],
+    "attributes" : [{"INT": 1, "CHR": 1}],
     "archetype" : "The Interrogator",
   },
   {
     "name" : "Foreign Languages",
-    "attributes" : [{"INT": 2}],
+    "attributes" : [{"INT": 2, "CHR": 2}],
     "archetype" : "The Linguist",
   },
   {
@@ -72,12 +72,12 @@ List<Map<String, dynamic>> hitmanSkills = [
   },
   {
     "name" : "Climbing",
-    "attributes" : [{"AGI": 2, "STR" : 2}],
+    "attributes" : [{"STR" : 2}],
     "archetype" : "The Climber",
   },
   {
     "name" : "Swimming",
-    "attributes" : [{"AGI": 2, "STR": 2}],
+    "attributes" : [{"STR": 2}],
     "archetype" : "The Swimmer",
   },
   {
@@ -92,7 +92,7 @@ List<Map<String, dynamic>> hitmanSkills = [
   },
   {
     "name" : "Survival Skills",
-    "attributes" : [{"INT": 1, "STR": 1, "END": 1}],
+    "attributes" : [{"INT": 1, "STR": 1}],
     "archetype" : "The Survivor",
   },
   {
@@ -102,7 +102,7 @@ List<Map<String, dynamic>> hitmanSkills = [
   },
   {
     "name" : "Deception and Misdirection",
-    "attributes" : [{"STL": 1, "INT": 1}],
+    "attributes" : [{"STL": 1, "INT": 1, "LKY": 1}],
     "archetype" : "The Deceiver",
   },
   {

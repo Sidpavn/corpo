@@ -1,3 +1,4 @@
+import 'package:corpo/services/hitmen_functions/hitmen_functions.dart';
 import 'package:corpo/widgets/other_widgets/text_widgets.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flip_card/flip_card_controller.dart';
@@ -49,11 +50,22 @@ Widget hitmanFrontCard({
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    info(
-                        false,
-                        title: hitman.rank + " Tier",
-                        textAlign: TextAlign.left,
-                        color: ColorTheme.black
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        info(
+                            false,
+                            title: hitman.rank + " Tier",
+                            textAlign: TextAlign.left,
+                            color: ColorTheme.black
+                        ),
+                        title(
+                            false,
+                            title: getEmotionEmoji(emotion: getEmotion(stress: hitman.stress, maxStress: hitman.maxStress)),
+                            textAlign: TextAlign.left,
+                            color: ColorTheme.black
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 5),
                     headline(
@@ -87,9 +99,9 @@ Widget hitmanFrontCard({
               Row(
                 children: [
                   attributeInfo(attribute: "CMB", hitman: hitman),
-                  attributeInfo(attribute: "AGI", hitman: hitman),
+                  attributeInfo(attribute: "LKY", hitman: hitman),
                   attributeInfo(attribute: "PER", hitman: hitman),
-                  attributeInfo(attribute: "END", hitman: hitman),
+                  attributeInfo(attribute: "CHR", hitman: hitman),
                 ],
               ),
               const SizedBox(height: 10),

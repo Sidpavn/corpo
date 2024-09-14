@@ -1,3 +1,5 @@
+import 'package:corpo/common/enums/enums.dart';
+
 class Hitman {
   String name;
   String architype;
@@ -5,6 +7,9 @@ class Hitman {
   List<String> quirks;
   String rank;
   Map<String, dynamic> attributes;
+  int slots;
+  int stress;
+  int maxStress;
 
   Hitman({
     required this.name,
@@ -13,6 +18,9 @@ class Hitman {
     required this.quirks,
     required this.rank,
     required this.attributes,
+    required this.slots,
+    required this.stress,
+    required this.maxStress,
   });
 
   factory Hitman.fromJson(Map<String, dynamic> json) {
@@ -23,6 +31,9 @@ class Hitman {
       quirks: List<String>.from(json['quirks']),
       rank: json['rank'],
       attributes: json['attributes'],
+      slots: json['slots'],
+      stress: json['stress'],
+      maxStress: json['maxStress'],
     );
   }
 
@@ -34,6 +45,9 @@ class Hitman {
       'quirks': quirks,
       'rank': rank,
       'attributes': attributes,
+      'slots': slots,
+      'stress': stress,
+      'maxStress': maxStress,
     };
   }
 }
@@ -97,11 +111,11 @@ class Attributes {
   int? HCK;
   int? INT;
   int? CMB;
-  int? AGI;
+  int? LKY;
   int? PER;
-  int? END;
+  int? CHR;
 
-  Attributes({this.STR, this.STL, this.HCK, this.INT, this.CMB, this.AGI, this.PER, this.END});
+  Attributes({this.STR, this.STL, this.HCK, this.INT, this.CMB, this.LKY, this.PER, this.CHR});
 
   Attributes.fromJson(Map<String, dynamic> json) {
     STR = json['STR'] ?? null;
@@ -109,9 +123,9 @@ class Attributes {
     HCK = json['HCK'] ?? null;
     INT = json['INT'] ?? null;
     CMB = json['CMB'] ?? null;
-    AGI = json['AGI'] ?? null;
+    LKY = json['LKY'] ?? null;
     PER = json['PER'] ?? null;
-    END = json['END'] ?? null;
+    CHR = json['CHR'] ?? null;
   }
 
   Map<String, dynamic> toJson() {
@@ -121,9 +135,9 @@ class Attributes {
     if(data['HCK'] != null){  data['HCK'] = this.HCK; }
     if(data['INT'] != null){  data['INT'] = this.INT; }
     if(data['CMB'] != null){  data['CMB'] = this.CMB; }
-    if(data['AGI'] != null){  data['AGI'] = this.AGI; }
+    if(data['LKY'] != null){  data['LKY'] = this.LKY; }
     if(data['PER'] != null){  data['PER'] = this.PER; }
-    if(data['END'] != null){  data['END'] = this.END; }
+    if(data['CHR'] != null){  data['CHR'] = this.CHR; }
     return data;
   }
 }

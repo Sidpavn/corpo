@@ -13,3 +13,11 @@ enum typeOfPublication {
   times_New_Kaldor
 }
 
+enum typeOfEmotion {
+  CONTENT,    // 😌
+  HAPPY,      // 🙂
+  NEUTRAL,    // 😐
+  ANGRY,      // 😠
+  DEPRESSED,  // 😣
+  DEATH       // 😣
+}

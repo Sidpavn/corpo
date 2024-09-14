@@ -7,7 +7,7 @@ deleteItem({required String key}){
   storage.deleteItem(key);
 }
 
-setItem({required String key, required dynamic value}){
+Future<void> setItem({required String key, required dynamic value}) async {
   storage.setItem(key, value);
 }
 
@@ -22,5 +22,6 @@ clearLocalStorage(){
 enum storageItem {
   tutorialEnabled,
   tutorialCompleted,
-  hitmanCards
+  hitmanCards,
+  missionDetail
 }

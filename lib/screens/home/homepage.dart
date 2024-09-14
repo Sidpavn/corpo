@@ -12,6 +12,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../common/statics.dart';
 import '../../models/themes/theme.dart';
+import '../../services/mission_functions/mission_functions.dart';
 import '../../services/splash/splash_service.dart';
 import '../../widgets/other_widgets/text_widgets.dart';
 
@@ -89,15 +90,19 @@ class _HomepageState extends State<Homepage> {
                                               const SizedBox(height: 20),
                                               GestureDetector(
                                                 onTap: () async {
-                                                  await getHitmanCards().then((value) {
-                                                    Navigator.of(context).push(
-                                                      PageRouteBuilder(
-                                                        // pageBuilder: (context, animation1, animation2) => AgencyPage(),
-                                                        pageBuilder: (context, animation1, animation2) => Gamepage(initialCards: value),
-                                                        transitionDuration: Duration.zero,
-                                                        reverseTransitionDuration: Duration.zero,
-                                                      ),
-                                                    );
+                                                  await getHitmanCards().then((cards) async {
+                                                    await getMissionDetails().then((mission) {
+                                                      Navigator.of(context).push(
+                                                        PageRouteBuilder(
+                                                          pageBuilder: (context, animation1, animation2) => Gamepage(
+                                                            initialCards: cards,
+                                                            mission: mission,
+                                                          ),
+                                                          transitionDuration: Duration.zero,
+                                                          reverseTransitionDuration: Duration.zero,
+                                                        ),
+                                                      );
+                                                    });
                                                   });
                                                 },
                                                 child: button(title: "Start your agency", primary: true),
@@ -172,12 +177,18 @@ class _HomepageState extends State<Homepage> {
   Future<List<Map<String, dynamic>>> getHitmanCards() async {
     setState(() {
       hitmanCards.clear(); 
-      for(int i=0; i < 3; i++){
+      for(int i=0; i < 6; i++){
         hitmanCards.add(getHitmanData(tier: typeOfTier.DTier));
         setItem(key: storageItem.hitmanCards.name, value: hitmanCards);
       } 
     }); 
     return hitmanCards;
+  }
+
+  Future<Map<String, dynamic>> getMissionDetails() async {
+    Map<String, dynamic> mission = getMission();
+    await setItem(key: storageItem.missionDetail.name, value: mission);
+    return mission;
   }
 
   Widget button({required String title, required bool primary}){

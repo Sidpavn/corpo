@@ -32,10 +32,39 @@ Map<String, dynamic> getHitmanData({required typeOfTier tier}){
   hitmanData["quirks"]      = getQuirksBasedOnTier(tier: tier);
   hitmanData["rank"]        = tier.name[0];
   hitmanData["attributes"]  = assignAttributes(tier: tier, list: skills.attributes!);
+  hitmanData["slots"]       = getSlots(tier: tier);
+  hitmanData["stress"]      = getStress(tier: tier);
+  hitmanData["maxStress"]   = getMaxStress(tier: tier);
 
   debugPrint("hitmanData :: " + hitmanData.toString());
 
   return hitmanData;
+}
+
+int getMaxStress({required typeOfTier tier}){
+  var random = Random();
+  int min = 0, max = 0, maxStress = 0;
+  switch(tier){
+    case typeOfTier.STier:  min = 9; max = 9; break;
+    case typeOfTier.ATier:  min = 6; max = 7; break;
+    case typeOfTier.BTier:  min = 5; max = 6; break;
+    case typeOfTier.CTier:  min = 4; max = 6; break;
+    case typeOfTier.DTier:  min = 4; max = 5; break;
+  }
+  maxStress = min + random.nextInt(max - min + 1);
+  return maxStress;
+}
+
+int getStress({required typeOfTier tier}){
+  int stress = 0;
+  switch(tier){
+    case typeOfTier.STier:  stress = 0; break;
+    case typeOfTier.ATier:  stress = 0; break;
+    case typeOfTier.BTier:  stress = 0; break;
+    case typeOfTier.CTier:  stress = 1; break;
+    case typeOfTier.DTier:  stress = 1; break;
+  }
+  return stress;
 }
 
 Map<String, dynamic> assignAttributes({required typeOfTier tier, required List<Attributes> list}){
@@ -45,27 +74,27 @@ Map<String, dynamic> assignAttributes({required typeOfTier tier, required List<A
 
   switch(tier){
     case typeOfTier.STier: {
-      min = 20;  max = 35;
+      min = 10;  max = 15;
       noOfWeakAttributes = 0;
       break;
     }
     case typeOfTier.ATier: {
-      min = 16;  max = 25;
-      noOfWeakAttributes = 1; weakAttribute = 4;
+      min = 8;  max = 12;
+      noOfWeakAttributes = 1; weakAttribute = 3;
       break;
     }
     case typeOfTier.BTier: {
-      min = 10;  max = 20;
+      min = 6;  max = 9;
       noOfWeakAttributes = 1; weakAttribute = 4;
       break;
     }
     case typeOfTier.CTier: {
-      min = 7;  max = 15;
+      min = 3;  max = 6;
       noOfWeakAttributes = 2; weakAttribute = 4;
       break;
     }
     case typeOfTier.DTier: {
-      min = 3;  max = 8;
+      min = 1;  max = 4;
       noOfWeakAttributes = 3; weakAttribute = 6;
       break;
     }
@@ -90,9 +119,9 @@ Map<String, dynamic> assignAttributes({required typeOfTier tier, required List<A
     if(attribute == "HCK"){value = value + (list.map((e) => e.HCK).first ?? 0);}
     if(attribute == "INT"){value = value + (list.map((e) => e.INT).first ?? 0);}
     if(attribute == "CMB"){value = value + (list.map((e) => e.CMB).first ?? 0);}
-    if(attribute == "AGI"){value = value + (list.map((e) => e.AGI).first ?? 0);}
+    if(attribute == "LKY"){value = value + (list.map((e) => e.LKY).first ?? 0);}
     if(attribute == "PER"){value = value + (list.map((e) => e.PER).first ?? 0);}
-    if(attribute == "END"){value = value + (list.map((e) => e.END).first ?? 0);}
+    if(attribute == "CHR"){value = value + (list.map((e) => e.CHR).first ?? 0);}
 
     bool isStrongAttribute = false;
     if(list.map((e) => e.STR).first != null){isStrongAttribute = true;}
@@ -100,8 +129,9 @@ Map<String, dynamic> assignAttributes({required typeOfTier tier, required List<A
     if(list.map((e) => e.HCK).first != null){isStrongAttribute = true;}
     if(list.map((e) => e.INT).first != null){isStrongAttribute = true;}
     if(list.map((e) => e.CMB).first != null){isStrongAttribute = true;}
+    if(list.map((e) => e.LKY).first != null){isStrongAttribute = true;}
     if(list.map((e) => e.PER).first != null){isStrongAttribute = true;}
-    if(list.map((e) => e.END).first != null){isStrongAttribute = true;}
+    if(list.map((e) => e.CHR).first != null){isStrongAttribute = true;}
 
     if(!isStrongAttribute){if(tempAttributes.contains(attribute)){value = value - random.nextInt(weakAttribute);}}
 
@@ -183,4 +213,48 @@ List<String> getQuirksBasedOnTier({required typeOfTier tier}){
   }
 
   return quirks;
+}
+
+int getSlots({required typeOfTier tier}){
+  int slots = 0;
+
+  switch(tier){
+    case typeOfTier.STier:  slots = 3; break;
+    case typeOfTier.ATier:  slots = 2; break;
+    case typeOfTier.BTier:  slots = 1; break;
+    case typeOfTier.CTier:  slots = 1; break;
+    case typeOfTier.DTier:  slots = 0; break;
+  }
+
+  return slots;
+}
+
+typeOfEmotion getEmotion({required int stress, required int maxStress}){
+  double stressLevel = stress / maxStress;
+  if (stressLevel <= 0.1) {
+    return typeOfEmotion.CONTENT;
+  } else if (stressLevel <= 0.3) {
+    return typeOfEmotion.HAPPY;
+  } else if (stressLevel <= 0.5) {
+    return typeOfEmotion.NEUTRAL;
+  } else if (stressLevel <= 0.7) {
+    return typeOfEmotion.ANGRY;
+  } else if (stressLevel <= 0.9) {
+    return typeOfEmotion.DEPRESSED;
+  } else if (stressLevel <= 1.0) {
+    return typeOfEmotion.DEATH;
+  } else {
+    return typeOfEmotion.NEUTRAL;
+  }
+}
+
+String getEmotionEmoji({required typeOfEmotion emotion}){
+  switch(emotion){
+    case typeOfEmotion.CONTENT:   return "😌";
+    case typeOfEmotion.HAPPY:     return "🙂";
+    case typeOfEmotion.NEUTRAL:   return "😐";
+    case typeOfEmotion.ANGRY:     return "😠";
+    case typeOfEmotion.DEPRESSED: return "😣";
+    case typeOfEmotion.DEATH:     return "☠️";
+  }
 }

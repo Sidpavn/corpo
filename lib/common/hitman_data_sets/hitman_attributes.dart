@@ -5,8 +5,8 @@ List<String> hitmanAttributes = [
   "HCK",  // Hacking
   "INT",  // Intelligence
   "CMB",  // Combat
-  "AGI",  // Agility
+  "LKY", // Lucky
   "PER",  // Perception
-  "END",  // Endurance
+  "CHR", // Charisma
 ];
 

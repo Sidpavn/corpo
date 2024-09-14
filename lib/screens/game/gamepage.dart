@@ -12,7 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:spring/spring.dart';
+import 'package:swipe_cards/draggable_card.dart';
+import 'package:swipe_cards/swipe_cards.dart';
 import '../../common/statics.dart';
+import '../../models/mission/mission_models.dart';
 import '../../models/themes/theme.dart';
 import '../../services/splash/splash_service.dart';
 import '../../widgets/cards/hitman_cards.dart';
@@ -22,7 +26,8 @@ import '../../widgets/other_widgets/text_widgets.dart';
 class Gamepage extends StatefulWidget {
 
   final List<Map<String, dynamic>> initialCards;
-  Gamepage({required this.initialCards});
+  final Map<String, dynamic> mission;
+  Gamepage({required this.initialCards, required this.mission});
 
   @override
   State<Gamepage> createState() => _GamepageState();
@@ -36,12 +41,54 @@ class _GamepageState extends State<Gamepage> {
   List<Map<String, dynamic>> hitmanCards = [];
   List<Map<String, dynamic>> selectedHitmanCards = [];
 
+  List<SwipeItem> _swipeItems = <SwipeItem>[];
+  MatchEngine? _matchEngine;
+
+  Mission currentMission = Mission();
+
+  List<Map<String,dynamic>> missionCards = [];
+
   @override
   void initState() {
     super.initState();
+    currentMission = Mission.fromJson(widget.mission);
+
+    missionCards.add({
+      "name": currentMission.name!.name!,
+      "isTitle": true,
+      "phase": 0,
+    });
+
+    for (int i = 0; i < currentMission.stages!.length; i++) {
+      missionCards.add({
+        "name": currentMission.stages![i].name!,
+        "isTitle": false,
+        "phase": i+1,
+      });
+    }
+
+    for (int i = 0; i < missionCards.length; i++) {
+      _swipeItems.add(SwipeItem(
+        content: missionCard(data: missionCards[i]),
+        likeAction: () {
+
+        },
+        nopeAction: () {
+
+        },
+        superlikeAction: () {
+
+        },
+        onSlideUpdate: (SlideRegion? region) async {
+
+        }));
+    }
+
+    _matchEngine = MatchEngine(swipeItems: _swipeItems);
+
     hitmanCards.addAll(widget.initialCards);
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      showTutorialModal(context);
+      // showTutorialModal(context);
     });
   }
 
@@ -86,10 +133,19 @@ class _GamepageState extends State<Gamepage> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(20,0,20,20),
-                                      child: targetCard(
-                                        hitman: Hitman.fromJson(hitmanCards[0]),
-                                        isCard: true,
-                                      ),
+                                      child: SwipeCards(
+                                        matchEngine: _matchEngine!,
+                                        itemBuilder: (BuildContext context, int index) {
+                                          return _swipeItems[index].content;
+                                        },
+                                        onStackFinished: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        itemChanged: (SwipeItem item, int index) {
+                                        },
+                                        upSwipeAllowed: true,
+                                        fillSpace: false,
+                                      )
                                     ),
                                     assignmentDesk(),
                                     hitmanCardDeck(),
@@ -106,6 +162,75 @@ class _GamepageState extends State<Gamepage> {
         ),
       ),
       onWillPop: () async => true,
+    );
+  }
+
+
+  Widget missionCard({
+    required Map<String,dynamic> data,
+  }){
+    return Container(
+        width: double.infinity,
+        height: 400,
+        decoration: BoxDecoration(
+            color: ColorTheme.darkRed,
+            border: Border.all(color: ColorTheme.black, width: 1.5)
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const SizedBox(),
+            if(data["isTitle"])...{
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  title(
+                      false,
+                      title: "Your mission is",
+                      textAlign: TextAlign.center,
+                      color: ColorTheme.white
+                  ),
+                  const SizedBox(height: 5),
+                  headline(
+                      true,
+                      title: data["name"],
+                      textAlign: TextAlign.center,
+                      color: ColorTheme.white
+                  ),
+                  const SizedBox(height: 20),
+                  subtitle(
+                      false,
+                      title: "(Swipe this card away to start)",
+                      textAlign: TextAlign.center,
+                      color: ColorTheme.white.withOpacity(0.6)
+                  ),
+                ],
+              )
+            }
+            else...{
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  title(
+                      false,
+                      title: "Phase #${data["phase"].toString()}",
+                      textAlign: TextAlign.center,
+                      color: ColorTheme.white
+                  ),
+                  const SizedBox(height: 10),
+                  headline(
+                      true,
+                      title: data["name"],
+                      textAlign: TextAlign.center,
+                      color: ColorTheme.white
+                  ),
+                ],
+              )
+            },
+            const SizedBox(),
+          ],
+        )
     );
   }
 
@@ -185,7 +310,7 @@ class _GamepageState extends State<Gamepage> {
                 ),
                 subtitle(
                     false,
-                    title: "3/3",
+                    title: "${hitmanCards.length.toString()}/6",
                     textAlign: TextAlign.left,
                     color: ColorTheme.black
                 ),
